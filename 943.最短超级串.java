@@ -61,8 +61,10 @@ class Solution {
         for(int i=0;i<n;i++)
             if(!seen[i])
                 perm[t++]=i;
-        StringBuilder res=new StringBuilder(A[perm[0]])
-        return null;
+        StringBuilder res=new StringBuilder(A[perm[0]]);
+        for(int i=1;i<n;++i)
+            res.append(A[perm[i]].substring(m[perm[i-1]][perm[i]]));
+        return res.toString();
     }
 }
 // @lc code=end
