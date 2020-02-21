@@ -1,9 +1,11 @@
+
 /*
  * @lc app=leetcode.cn id=943 lang=java
  *
  * [943] 最短超级串
  */
 import java.util.Arrays;
+import java.util.Map;
 
 // @lc code=start
 class Solution {
@@ -69,3 +71,62 @@ class Solution {
 }
 // @lc code=end
 
+class SolutionBT {
+    private Map<Integer,String> map = new HashMap<>();
+    //用来计算公共部分长度
+    public int check(String a, String b){
+        for(int start = 0; start < a.length(); start ++){
+            if(a.charAt(start) == b.charAt(0)){
+                int i = start;
+                int j = 0;
+                while(i < a.length() && j < b.length() && a.charAt(i) == b.charAt(j)){
+                    i ++;
+                    j ++;
+                }
+                if(i == a.length()){
+                    return j;
+                }
+            }
+        }
+        return 0;
+    }
+    public String dfs(String[] A, int[][] cop, int used, int cur){
+        //把 used | cur << 12 作为状态保存，同时包含当前结点和已经遍历过的结点
+        if(map.containsKey(used | cur << 12)){
+            return map.get(used | cur << 12);
+        }
+        String res = A[cur];
+        int min = Integer.MAX_VALUE;
+        for(int i = 0; i < A.length; i ++){
+            if((used & (1 << i)) != 0) continue;
+            String tmp = A[cur] + dfs(A,cop,used | 1 << i,i).substring(cop[cur][i]);
+            if(tmp.length() < min){
+                min = tmp.length();
+                res = tmp;
+            }
+        }
+        map.put(used | cur << 12,res);
+        return res;
+    }
+    
+    public String shortestSuperstring(String[] A) {
+        int n = A.length;
+        //先把公共部分长度计算出来
+        int[][] cop = new int[n][n];
+        for(int i = 0; i < n; i ++){
+            for(int j = 0; j < n; j ++){
+                cop[i][j] = check(A[i],A[j]);
+            }
+        }
+        String res = null;
+        int min = Integer.MAX_VALUE;
+        for(int i = 0; i < A.length; i ++){
+            String tmp = dfs(A,cop,1 << i,i);
+            if(tmp.length() < min){
+                min = tmp.length();
+                res = tmp;
+            }
+        }
+        return res;
+    }
+}
