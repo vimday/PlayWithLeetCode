@@ -5,6 +5,7 @@
  * [943] 最短超级串
  */
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 // @lc code=start
