@@ -65,7 +65,8 @@ public:
                 int nt=r*n+c,nd=g[i][j]==k?0:1;
                 if(me[nt]>me[t]+nd){
                     me[nt]=me[t]+nd;
-                    pq.push(nt);
+                    pq.push(nt);//！！！！！！！！！！ 此时修改me，并不会更新更新 整个堆，使用变化的数组做比较操作 的弊端显而易见，若nt已在堆中，此时push 有可能并不把nt提前
+                                //！！！！！！！！！！！push_heap的实现是自低向上更新，早终止
                 }
                 
             }
@@ -157,6 +158,44 @@ public:
                     pq.push_front(make_pair(f.first, ny * m + nx));
                 else
                     pq.push_back(make_pair(f.first + 1, ny * m + nx));
+            }
+        }
+        return 0;
+    }
+};
+
+//my deque
+class Solution {
+public:
+    const int dx[5]={0,0,0,1,-1},dy[5]={0,1,-1,0,0};
+    int minCost(vector<vector<int>>& g) {
+        int m=g.size(),n=g[0].size();
+        deque<int> dq;
+        int me[m*n];memset(me,0x3f,sizeof me);
+        bool vis[m*n]={};
+        
+        me[0]=0;dq.push_back(0);
+        while(!dq.empty()){
+            int t=dq.front();dq.pop_front();
+            if(t==m*n-1) return me[t];
+            if(vis[t]) continue;
+            vis[t]=true;
+            int i=t/n,j=t%n;
+            for(int k=1;k<5;k++){
+                int r=i+dx[k],c=j+dy[k];
+                if(r>=0&&r<m&&c>=0&&c<n){
+                    int nx=r*n+c;
+                    if(k==g[i][j]){
+                        if(me[t]<me[nx]){
+                            me[nx]=me[t];
+                            dq.push_front(nx);
+                        }
+                    }else if(me[t]+1<me[nx]){
+                        me[nx]=me[t]+1;
+                        dq.push_back(nx);
+                    }
+                        
+                }
             }
         }
         return 0;
