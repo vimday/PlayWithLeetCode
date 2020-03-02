@@ -164,7 +164,7 @@ public:
     }
 };
 
-//my deque
+//my deque 更快
 class Solution {
 public:
     const int dx[5]={0,0,0,1,-1},dy[5]={0,1,-1,0,0};
