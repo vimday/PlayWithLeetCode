@@ -8,6 +8,56 @@ struct TreeNode
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+// //java 6ms
+// class Solution {
+//     int max = 0;
+//     public int longestZigZag(TreeNode root) {
+//         dfs(root,true);
+//         return max;
+//     }
+//     private int dfs(TreeNode root, boolean isLeft){
+//         if(root==null)  return 0;
+//         int r =  dfs(root.right,false);
+//         int l = dfs(root.left,true);
+//         int big = l>r? l:r;
+//         if(big>max) max = big;
+//         if(isLeft){
+//             return r+1;
+//         } else {
+//             return l+1;
+//         }
+//     }
+// }
+
+//123ms
+// class Solution {
+    
+//     HashMap<TreeNode,Integer> table1 = new HashMap<>();
+//     HashMap<TreeNode,Integer> table2 = new HashMap<>();
+//     public int longestZigZag(TreeNode root) {
+//         if(root==null) return 0;
+//         TreeNode left = root.left;
+//         TreeNode right = root.right;
+//         int cur = Math.max(turnRight(root),turnLeft(root));
+//         int son = Math.max(longestZigZag(left),longestZigZag(right));
+//         return Math.max(cur,son);
+//     }
+//     public int turnLeft(TreeNode root){
+//         if(root==null) return -1;
+//         if(table1.containsKey(root)) return table1.get(root);
+//         int res = 1+turnRight(root.left);
+//         table1.put(root,res);
+//         return res;
+//     }
+//     public int turnRight(TreeNode root){
+//         if(root==null) return -1;
+//         if(table2.containsKey(root)) return table2.get(root);
+//         int res = 1+turnLeft(root.right);
+//         table2.put(root,res);
+//         return res;
+//     }
+// }
+
 
 //by vimday
 class Solution
