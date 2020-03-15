@@ -7,6 +7,8 @@
  * @E-mail      :lwftx@outlook.com
  * @GitHub      :https://github.com/vimday
  */
+
+//
 #include <bits/stdc++.h>
 using namespace std;
 void debug() {
