@@ -15,6 +15,37 @@ void debug() {
     freopen("E:\\Cpp\\out.txt", "w", stdout);
 #endif
 }
+
+class Solution {
+public:
+    vector<int> getLeastNumbers(vector<int>& arr, int k) {
+        int n = arr.size();
+        part(arr, 0, n, k);
+        return vector<int>(arr.begin(), arr.begin() + k);
+    }
+    void part(vector<int>& arr, int l, int r, int k) {
+        if (l >= r)
+            return;
+        swap(arr[l], arr[l + rand() % (r - l)]);
+        int t = arr[l];
+        int i = l, j = r;
+        while (i < j) {
+            while (i < j && arr[--j] > t)
+                ;
+            arr[i] = arr[j];
+            while (i < j && arr[++i] < t)
+                ;
+            arr[j] = arr[i];
+        }
+        arr[i] = t;
+        if (i == k)
+            return;
+        if (i < k)
+            part(arr, i + 1, r, k);
+        else
+            part(arr, l, i, k);
+    }
+};
 class Solution {
 public:
     vector<int> getLeastNumbers(vector<int>& arr, int k) {
