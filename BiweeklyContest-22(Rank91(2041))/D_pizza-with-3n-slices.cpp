@@ -1,7 +1,7 @@
 /*
  * @Author      :vimday
- * @Desc        :
- * @Url         :
+ * @Desc        :分批萨问题
+ * @Url         :https://leetcode-cn.com/problems/pizza-with-3n-slices/
  * @File Name   :D_pizza-with-3n-slices.cpp
  * @Created Time:2020-03-22 00:04:29
  * @E-mail      :lwftx@outlook.com
