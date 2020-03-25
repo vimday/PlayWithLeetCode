@@ -40,3 +40,38 @@ public:
         return v[k - 1];
     }
 };
+
+class Solution {
+public:
+    static bool f;
+    static int me[1005];
+    void help(int i) {
+        long t = i, cnt = 0;
+        while (t != 1) {
+            if (t & 1)
+                t = 3 * t + 1;
+            else
+                t >>= 1;
+            cnt++;
+        }
+        me[i] = cnt;
+    }
+    int getKth(int lo, int hi, int k) {
+        if (!f) {
+            //memset(me,0,sizeof me);
+            for (int i = 1; i < 1001; i++) {
+                help(i);
+            }
+            f = true;
+        }
+
+        vector<int> v;
+        for (int i = lo; i <= hi; i++) {
+            v.push_back(i);
+        }
+        sort(v.begin(), v.end(), [&](int a, int b) { return me[a] == me[b] ? a < b : me[a] < me[b]; });
+        return v[k - 1];
+    }
+};
+bool Solution::f = false;
+int Solution::me[] = {};
