@@ -1,12 +1,12 @@
 {
     "files.associations": {
-        "random": "cpp",
         "array": "cpp",
         "atomic": "cpp",
         "*.tcc": "cpp",
         "bitset": "cpp",
         "cctype": "cpp",
         "cfenv": "cpp",
+        "charconv": "cpp",
         "chrono": "cpp",
         "cinttypes": "cpp",
         "clocale": "cpp",
@@ -34,7 +34,6 @@
         "vector": "cpp",
         "exception": "cpp",
         "algorithm": "cpp",
-        "filesystem": "cpp",
         "functional": "cpp",
         "iterator": "cpp",
         "map": "cpp",
@@ -42,6 +41,7 @@
         "memory_resource": "cpp",
         "numeric": "cpp",
         "optional": "cpp",
+        "random": "cpp",
         "ratio": "cpp",
         "regex": "cpp",
         "set": "cpp",
@@ -70,7 +70,6 @@
         "thread": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "valarray": "cpp",
-        "charconv": "cpp"
+        "valarray": "cpp"
     }
 }
