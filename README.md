@@ -7,6 +7,14 @@ LC 182周赛 https://leetcode-cn.com/contest/weekly-contest-182/
 
 LC 183周赛 https://leetcode-cn.com/contest/weekly-contest-183/
 
+LC 184周赛 https://leetcode-cn.com/contest/weekly-contest-184/
+
 LRU
 
 LFU
+
+交点 https://leetcode-cn.com/problems/intersection-lcci/
+
+LC 355 设计推特 https://leetcode-cn.com/problems/design-twitter/
+
+
