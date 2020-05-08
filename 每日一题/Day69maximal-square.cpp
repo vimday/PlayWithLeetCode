@@ -15,6 +15,7 @@ void debug() {
     freopen("E:\\Cpp\\out.txt", "w", stdout);
 #endif
 }
+
 class Solution {
 public:
     int maximalSquare(vector<vector<char>>& ma) {
