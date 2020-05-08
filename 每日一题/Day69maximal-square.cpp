@@ -11,8 +11,8 @@
 using namespace std;
 void debug() {
 #ifdef LOCAL
-    freopen("E:\\Cpp\\in.txt", "r", stdin);
-    freopen("E:\\Cpp\\out.txt", "w", stdout);
+    freopen("./in.txt", "r", stdin);
+    freopen("./out.txt", "w", stdout);
 #endif
 }
 
