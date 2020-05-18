@@ -34,7 +34,6 @@ public:
             i++;
             j--;
         };
-
         if (i >= j) return true;
         return false;
     }
