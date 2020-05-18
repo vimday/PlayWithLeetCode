@@ -30,7 +30,7 @@ public:
         return false;
     }
     bool isp(string &s, int i, int j) {
-        while (i < j && s[i] == s[j]) {
+                while (i < j && s[i] == s[j]) {
             i++;
             j--;
         };
