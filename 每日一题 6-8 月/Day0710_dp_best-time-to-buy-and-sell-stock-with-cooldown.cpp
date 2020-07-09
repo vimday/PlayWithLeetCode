@@ -45,3 +45,20 @@ public:
         return s[n - 1];
     }
 };
+class Solution {
+public:
+    int maxProfit(vector<int>& ps) {
+        int n = ps.size();
+        int pp0 = 0, pp1 = 0, p0 = 0, p1 = INT_MIN, c0 = 0, c1 = 0;
+        // 0 空仓 1 满仓
+        for (int& i : ps) {
+            c0 = max(p0, p1 + i);
+            c1 = max(p1, pp0 - i);
+            pp0 = p0;
+            pp1 = p1;
+            p0 = c0;
+            p1 = c1;
+        }
+        return c0;
+    }
+};
