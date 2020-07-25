@@ -66,3 +66,35 @@ static const auto magic = []() {
     cout.tie(nullptr);
     return nullptr;
 }();
+
+class Solution {
+public:
+    int m, n, d[5] = {-1, 0, 1, 0, -1};
+    vector<vector<int>> me;
+    int longestIncreasingPath(vector<vector<int>>& ma) {
+        m = ma.size();
+        if (m == 0)
+            return 0;
+        n = ma[0].size();
+        if (n == 0)
+            return 0;
+        int res = 0;
+        me = vector<vector<int>>(m, vector<int>(n, 0));
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+                if (me[i][j] == 0)
+                    res = max(res, dfs(ma, i, j));
+        return res;
+    }
+    int dfs(vector<vector<int>>& g, int i, int j) {
+        if (me[i][j])
+            return me[i][j];
+        me[i][j] = 1;
+        for (int k = 0; k < 4; k++) {
+            int r = i + d[k], c = j + d[k + 1];
+            if (r >= 0 && r < m && c >= 0 && c < n && g[r][c] > g[i][j])
+                me[i][j] = max(me[i][j], 1 + dfs(g, r, c));
+        }
+        return me[i][j];
+    }
+};
