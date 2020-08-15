@@ -155,3 +155,24 @@ public:
         return cal(record, 0, record.size(), boxes);
     }
 };
+class Solution {
+public:
+    int dp[100][100][101];
+    int removeBoxes(vector<int>& bs) {
+        memset(dp, 0, sizeof dp);
+        return dfs(bs, 0, bs.size() - 1, 1);
+    }
+    int dfs(vector<int>& bs, int l, int r, int k) {
+        if (l > r) return 0;
+        if (dp[l][r][k]) return dp[l][r][k];
+        while (r > l && bs[r] == bs[r - 1]) {
+            r--;
+            k++;
+        }
+        dp[l][r][k] = dfs(bs, l, r - 1, 1) + k * k;
+        for (int i = l; i < r - 1; i++)
+            if (bs[i] == bs[r])
+                dp[l][r][k] = max(dp[l][r][k], dfs(bs, l, i, k + 1) + dfs(bs, i + 1, r - 1, 1));
+        return dp[l][r][k];
+    }
+};
