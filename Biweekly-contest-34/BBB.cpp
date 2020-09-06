@@ -38,18 +38,18 @@ public:
                     idx1 = i;
                 } else if (cn == 2 * t - 1) {
                     idx2 = i;
-                } else if (cn == t) {
+                }
+                if (cn == t) {
                     idx3 = i;
                 } else if (cn == t - 1) {
                     idx4 = i;
                 }
             }
         }
-
-        int c1 = idx2 - idx1, c2 = idx4 - idx3;
+        ll c1 = idx2 - idx1, c2 = idx4 - idx3;
         return c1 * c2 % mod;
     }
-    ll helpcn2(int n) {
+    ll helpcn2(ll n) {
         return n * (n - 1) / 2;
     }
 };
