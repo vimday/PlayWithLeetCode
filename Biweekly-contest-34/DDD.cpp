@@ -117,3 +117,34 @@ public:
         return dp[fuel][start];
     }
 };
+
+typedef long long ll;
+int dp[105][205];
+const int MOD = 1e9 + 7;
+class Solution {
+public:
+    int dfs(vector<int>& locations, int start, int finish, int fuel) {
+        if (dp[start][fuel] != -1) return dp[start][fuel];
+        ll ans = 0;
+        int len = locations.size();
+        if (start == finish) ans++;
+        for (int i = 0; i < len; i++) {
+            int diff = abs(locations[i] - locations[start]);
+            if (start == i) continue;
+            if (fuel - diff >= 0) {
+                ans = (ans + dfs(locations, i, finish, fuel - diff)) % MOD;
+            }
+        }
+        dp[start][fuel] = (ans % MOD);
+        return dp[start][fuel];
+    }
+    int countRoutes(vector<int>& locations, int start, int finish, int fuel) {
+        memset(dp, -1, sizeof(dp));
+        return dfs(locations, start, finish, fuel);
+    }
+};
+
+// 作者：j_strawhat-2
+// 链接：https://leetcode-cn.com/problems/count-all-possible-routes/solution/c-ji-yi-hua-sou-suo-by-j_strawhat-2/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
