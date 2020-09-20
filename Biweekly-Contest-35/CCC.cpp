@@ -18,6 +18,33 @@ void debug() {
 typedef long long ll;
 class Solution {
 public:
+    int minSubarray(vector<int>& nums, int p) {
+        int n = nums.size();
+        int ans = n;
+        long long sum = 0;
+        unordered_map<int, int> cnt;
+
+        for (int i = 0; i < n; ++i) sum += nums[i];
+        int rest = sum % p;
+        if (rest == 0) return 0;
+
+        cnt[0] = 0;
+        sum = 0;
+        for (int i = 1; i <= n; ++i) {
+            sum += nums[i - 1];
+            int x = (sum - rest + p) % p;
+            if (cnt.count(x)) {
+                ans = min(ans, i - cnt[x]);
+            }
+            cnt[sum % p] = i;
+        }
+        if (ans == n) return -1;
+        return ans;
+    }
+};
+
+class Solution {
+public:
     int n;
     int minSubarray(vector<int>& nums, int p) {
         n = nums.size();
