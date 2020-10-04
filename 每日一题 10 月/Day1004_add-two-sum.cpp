@@ -46,3 +46,27 @@ public:
         return dh->next;
     }
 };
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        if (!l1)
+            return l2;
+        if (!l2)
+            return l1;
+        ListNode* h = l1;
+        int c = 0;
+        while (l2 || c) {
+            if (l2) {
+                c += l2->val;
+                l2 = l2->next;
+            }
+            c += l1->val;
+            l1->val = c % 10;
+            c /= 10;
+            if (!l1->next && (c || l2))
+                l1->next = new ListNode(0);
+            l1 = l1->next;
+        }
+        return h;
+    }
+};
