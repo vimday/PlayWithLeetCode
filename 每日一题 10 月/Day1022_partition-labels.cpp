@@ -37,3 +37,21 @@ public:
         return res;
     }
 };
+class Solution {
+public:
+    vector<int> partitionLabels(string s) {
+        int n = s.size(), cur = 0, r = 0, l = 0;
+        int m[26]{0};
+        for (int i = 0; i < n; ++i)
+            m[s[i] - 'a'] = i;
+        vector<int> res;
+        while (cur < n) {
+            l = cur;
+            r = m[s[cur] - 'a'];
+            while (++cur <= r)
+                r = max(r, m[s[cur] - 'a']);
+            res.push_back(cur - l);
+        }
+        return res;
+    }
+};
